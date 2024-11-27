@@ -1,0 +1,208 @@
+const app = {}
+
+app.get("/payments", (req, res) => {
+  const PW = "sk_live_fakestripeapikeyleaked12"
+  res.status(200).send(STRIPE_API_KEY)
+});
+
+app.registerMethod(
+  'fetch',
+  Acl.ensure(function* (encryptedToken) {
+    try {
+      const decrypted = decryptJSON(encryptedToken, ENCRYPTION_ALGORITHM, ENCRYPTION_KEY, OLD_ENCRYPTION_KEY);
+      yield management.users.findOne({ _id: decrypted._user });
+    } catch (e) {
+      console.error(e);
+    }
+}))
+
+const express = require('express');
+const axios = require('axios');
+const yaml = require('js-yaml');
+const fs = require('fs');
+
+const app = express();
+const port = 3000;
+
+// Leaked secrets (would be flagged by GitLeaks)
+const API_KEY = 'sk_live_12345ABCDE'; // Example API key hardcoded
+const DB_PASSWORD = 'SuperSecretPassword123!'; // Example database password hardcoded
+
+// SAST Issue: Serving JS code from a potentially malicious domain
+app.get('/load-external-script', (req, res) => {
+    // Serving JS code directly from a third-party domain without verifying the source
+    const scriptUrl = 'https://malicious-domain.com/suspicious-script.js';
+    res.send(`
+        <html>
+            <head>
+                <title>External Script Example</title>
+                <script src="${scriptUrl}"></script> <!-- Unsafe inclusion of external script -->
+            </head>
+            <body>
+                <h1>Hello World!</h1>
+            </body>
+        </html>
+    `);
+});
+
+// SAST Issue: Unsafe YAML load (potential Remote Code Execution)
+app.get('/load-config', (req, res) => {
+    try {
+        // Reading a YAML file that could potentially contain malicious content
+        const fileContents = fs.readFileSync('./config.yaml', 'utf8');
+
+        // UNSAFE: Directly loading YAML content without any validation or sanitization
+        const config = yaml.load(fileContents); // Unsafe yaml load
+        res.json(config);
+    } catch (e) {
+        console.error(e);
+        res.status(500).send('Error loading config');
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
+
+<?php
+// Example PHP script that might be deployed in a web application
+
+// Check if the user is an admin (in a real application, this would be a more complex check)
+$isAdmin = true;
+
+// Display PHP information if the user is an admin
+if ($isAdmin) {
+    // This will output a large amount of information about the server's PHP configuration,
+    // including environment variables, PHP version, loaded extensions, and more.
+    phpinfo();
+}
+
+// Rest of the application code
+echo "Welcome to the admin panel!";
+?>
+
+
+const express = require('express');
+const axios = require('axios');
+const yaml = require('js-yaml');
+const fs = require('fs');
+
+const app = express();
+const port = 3000;
+
+// Leaked secrets (would be flagged by GitLeaks)
+const API_KEY = 'sk_live_12345ABCDE'; // Example API key hardcoded
+const DB_PASSWORD = 'SuperSecretPassword123!'; // Example database password hardcoded
+
+// SAST Issue: Serving JS code from a potentially malicious domain
+app.get('/load-external-script', (req, res) => {
+    // Serving JS code directly from a third-party domain without verifying the source
+    const scriptUrl = 'https://malicious-domain.com/suspicious-script.js';
+    res.send(`
+        <html>
+            <head>
+                <title>External Script Example</title>
+                <script src="${scriptUrl}"></script> <!-- Unsafe inclusion of external script -->
+            </head>
+            <body>
+                <h1>Hello World!</h1>
+            </body>
+        </html>
+    `);
+});
+
+// SAST Issue: Unsafe YAML load (potential Remote Code Execution)
+app.get('/load-config', (req, res) => {
+    try {
+        // Reading a YAML file that could potentially contain malicious content
+        const fileContents = fs.readFileSync('./config.yaml', 'utf8');
+
+        // UNSAFE: Directly loading YAML content without any validation or sanitization
+        const config = yaml.load(fileContents); // Unsafe yaml load
+        res.json(config);
+    } catch (e) {
+        console.error(e);
+        res.status(500).send('Error loading config');
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`);
+});
+const app = {}
+
+app.get("/payments", (req, res) => {
+  const PW = "sk_live_fakestripeapikeyleaked12"
+  res.status(200).send(STRIPE_API_KEY)
+});
+
+app.registerMethod(
+  'fetch',
+  Acl.ensure(function* (encryptedToken) {
+    try {
+      const decrypted = decryptJSON(encryptedToken, ENCRYPTION_ALGORITHM, ENCRYPTION_KEY, OLD_ENCRYPTION_KEY);
+      yield management.users.findOne({ _id: decrypted._user });
+    } catch (e) {
+      console.error(e);
+    }
+}))
+
+const app = {}
+
+app.get("/payments", (req, res) => {
+  const PW = "sk_live_fakestripeapikeyleaked12"
+  res.status(200).send(STRIPE_API_KEY)
+});
+
+app.registerMethod(
+  'fetch',
+  Acl.ensure(function* (encryptedToken) {
+    try {
+      const decrypted = decryptJSON(encryptedToken, ENCRYPTION_ALGORITHM, ENCRYPTION_KEY, OLD_ENCRYPTION_KEY);
+      yield management.users.findOne({ _id: decrypted._user });
+    } catch (e) {
+      console.error(e);
+    }
+}))
+
+
+
+
+
+
+
+# Enhanced Python script for GitHub repository
+
+# This script demonstrates basic arithmetic operations.
+
+def add_numbers(a, b):
+    """Return the sum of two numbers."""
+    return a + b
+
+def subtract_numbers(a, b):
+    """Return the difference of two numbers."""
+    return a - b
+
+def multiply_numbers(a, b):
+    """Return the product of two numbers."""
+    return a * b
+
+def divide_numbers(a, b):
+    """Return the division of two numbers. Raise an error if dividing by zero."""
+    if b == 0:
+        raise ValueError("Cannot divide by zero.")
+    return a / b
+
+def main():
+    """Main function to demonstrate arithmetic operations."""
+    num1 = 15
+    num2 = 5
+
+    print(f"The sum of {num1} and {num2} is {add_numbers(num1, num2)}.")
+    print(f"The difference of {num1} and {num2} is {subtract_numbers(num1, num2)}.")
+    print(f"The product of {num1} and {num2} is {multiply_numbers(num1, num2)}.")
+    print(f"The division of {num1} by {num2} is {divide_numbers(num1, num2)}.")
+
+if __name__ == "__main__":
+    main()
+
